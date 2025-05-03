@@ -98,6 +98,68 @@ footer {
       <p>You can reach me via <a href="https://github.com/">GitHub</a>.</p>
     </section>
   </main>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+header {
+  background-color: #4a90e2;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #3a78c2;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.hero-text {
+  text-align: center;
+  padding: 2rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
 
   <footer>
     <p>© 2025 Your Name. All rights reserved.</p>
