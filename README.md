@@ -6,12 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My First GitHub Page</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>Welcome to My Website!</h1>
-    <p>This is a simple website hosted on GitHub Pages.</p>
-  </header>
+
+
+ 
 
   <main>
     <section>
