@@ -1,106 +1,138 @@
- index.html and style.css.
+index.html and style.css.
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My GitHub Website</title>
+  <title>Your One-Stop Shop</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="logo.png" alt="My Logo" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <h1>🚀 Whatever You Need is Right Here!</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
       </ul>
     </nav>
-    <div class="hero-text">
-      <h1>Welcome to My Website!</h1>
-      <p>This is a simple site hosted on GitHub Pages.</p>
-    </div>
   </header>
 
   <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>This site was created to learn GitHub Pages and basic web development.</p>
+    <section class="product-list">
+      <div class="product" data-name="Smart Gadget" data-price="49.99">
+        <h2>Smart Gadget</h2>
+        <p>$49.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="product" data-name="Time Saver Pro" data-price="89.99">
+        <h2>Time Saver Pro</h2>
+        <p>$89.99</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>You can reach me via <a href="https://github.com/">GitHub</a>.</p>
+    <section class="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="total-price">0.00</span></p>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Your Name. All rights reserved.</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7;
+  background: #f3f4f6;
   color: #333;
 }
 
 header {
-  background-color: #4a90e2;
+  background-color: #4f46e5;
   color: white;
-  padding-bottom: 1rem;
+  padding: 1em;
+  text-align: center;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #3a78c2;
-}
-
-.logo img {
-  height: 50px;
-}
-
-.nav-links {
+nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
 }
 
-.nav-links li a {
+nav a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.nav-links li a:hover {
-  text-decoration: underline;
+.product-list {
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
 }
 
-.hero-text {
+.product {
+  background: white;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 2rem;
 }
 
-main {
-  padding: 2rem;
-}
-
-section {
-  margin-bottom: 2rem;
-}
-
-footer {
-  background-color: #222;
+button.add-to-cart {
+  background-color: #10b981;
   color: white;
-  text-align: center;
-  padding: 1rem;
+  border: none;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cart {
+  background: #fff;
+  padding: 1em;
+  margin: 2em auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+const cartItems = [];
+const cartList = document.getElementById('cart-items');
+const totalPriceEl = document.getElementById('total-price');
+const cartCountEl = document.getElementById('cart-count');
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', () => {
+    const product = button.closest('.product');
+    const name = product.dataset.name;
+    const price = parseFloat(product.dataset.price);
+
+    cartItems.push({ name, price });
+    updateCart();
+  });
+});
+
+function updateCart() {
+  cartList.innerHTML = '';
+  let total = 0;
+
+  cartItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+    cartList.appendChild(li);
+    total += item.price;
+  });
+
+  totalPriceEl.textContent = total.toFixed(2);
+  cartCountEl.textContent = cartItems.length;
 }
 
 
